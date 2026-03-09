@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: call-centre-ui
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server_ui:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: SARVAM_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+    disk:
+      name: call_data
+      mountPath: /var/data
+      sizeGB: 1

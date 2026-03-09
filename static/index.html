@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Center Analytics Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📞 Call Center Analytics Dashboard</h1>
+            <p>Upload, transcribe, and analyze call quality in real-time</p>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="section">
+                    <h3>🚀 Quick Actions</h3>
+                    <button class="btn btn-primary" onclick="triggerFileUpload()">
+                        📤 Upload Audio
+                    </button>
+                    <button class="btn btn-success" onclick="processAll()">
+                        ⚙️ Process Calls
+                    </button>
+                    <input type="file" id="fileInput" multiple accept=".mp3,.mp4,.wav,.m4a,.mpeg,.ogg,.flac" style="display:none" onchange="handleFileUpload()">
+                </div>
+
+                <div class="section">
+                    <h3>📊 Statistics</h3>
+                    <div class="stat">
+                        <span class="stat-label">Total Calls:</span>
+                        <span class="stat-value" id="totalCalls">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Transcribed:</span>
+                        <span class="stat-value" id="transcribedCalls">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Analyzed:</span>
+                        <span class="stat-value" id="analyzedCalls">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Avg Quality:</span>
+                        <span class="stat-value" id="avgQuality">-</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>ℹ️ Info</h3>
+                    <p>Upload call audio files and the system will:</p>
+                    <ol>
+                        <li>Transcribe using Sarvam AI</li>
+                        <li>Analyze quality with Gemini</li>
+                        <li>Generate detailed reports</li>
+                    </ol>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content">
+                <!-- Calls List -->
+                <section class="calls-section">
+                    <div class="section-header">
+                        <h2>📋 Calls</h2>
+                        <button class="btn btn-sm" onclick="refreshCalls()">🔄 Refresh</button>
+                    </div>
+
+                    <div id="callsList" class="calls-grid">
+                        <p class="loading">Loading calls...</p>
+                    </div>
+                </section>
+
+                <!-- Details Panel -->
+                <section class="details-section" id="detailsSection" style="display:none;">
+                    <div class="section-header">
+                        <h2 id="detailsTitle">Call Details</h2>
+                        <button class="btn btn-sm" onclick="closeDetails()">✕ Close</button>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+                        <button class="tab-btn" onclick="showTab('transcription')">Transcription</button>
+                        <button class="tab-btn" onclick="showTab('quality')">Quality Report</button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div id="overview" class="tab-content active">
+                        <div id="overviewContent"></div>
+                    </div>
+
+                    <div id="transcription" class="tab-content">
+                        <div id="transcriptionContent"></div>
+                    </div>
+
+                    <div id="quality" class="tab-content">
+                        <div id="qualityContent"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal for alerts -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+            <button class="btn btn-primary" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
