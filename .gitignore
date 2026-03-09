@@ -37,6 +37,4 @@ wheels/
 
 # Project specific
 temp_processed/
-call_quality_reports/
-transcriptions/
 *.pyc
