@@ -1,4 +1,5 @@
 import os
+import shutil
 import librosa
 import soundfile as sf
 import numpy as np
@@ -275,8 +276,13 @@ def transcribe_with_sarvam(calls_folder="data/calls", output_folder="transcripti
             print(f"  Output folder: {output_folder}")
         
     finally:
-        # Keep temporary files for debugging
-        print(f"\n✓ Temporary files saved in: {temp_folder}")
+        # Cleanup temporary engineered/output files after processing
+        if os.path.exists(temp_folder):
+            try:
+                shutil.rmtree(temp_folder)
+                print(f"\n✓ Cleaned temporary folder: {temp_folder}")
+            except Exception as cleanup_error:
+                print(f"\n⚠ Could not clean temporary folder {temp_folder}: {cleanup_error}")
 
 
 if __name__ == "__main__":
