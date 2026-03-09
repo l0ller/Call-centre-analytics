@@ -1,21 +1,18 @@
+# Core web framework
 fastapi
 uvicorn
-websockets
-pydub
-numpy
-faster-whisper
-piper-tts
-sentence-transformers
-coloredlogs
+python-multipart
+
+# Environment and configuration
 python-dotenv
-twilio
-llama-cpp-python
-torch
-langchain
-sounddevice
-scipy
+
+# Audio processing
 librosa
 soundfile
+numpy
+scipy
+
+# API clients
 sarvamai
 google-genai
 python-multipart
